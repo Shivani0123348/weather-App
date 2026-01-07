@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 
 function App() {
   const [city, setcity] = useState("Kanpur");
@@ -21,7 +20,6 @@ function App() {
     );
     response = await response.json();
     setweather(response);
-    console.log(response);
   };
 
   useEffect(() => {
@@ -35,7 +33,7 @@ function App() {
 
   // 📱 Responsive inline styles
   const containerStyle = {
-    backgroundColor: "#add8e6",
+    background: "linear-gradient(to bottom right, #4facfe, #00f2fe)",
     width: "100vw",
     minHeight: "100vh",
     display: "flex",
@@ -63,28 +61,21 @@ function App() {
     marginBottom: "2vw",
   };
 
-  const titleStyle = {
-    fontSize: "5vw",
-    fontWeight: "bold",
-    marginBottom: "2vw",
-    color: "#333",
-  };
-
-  const iconStyle = {
-    width: "30%",
-    maxWidth: "100px",
-    marginBottom: "2vw",
-  };
-
   const tempStyle = {
-    fontSize: "8vw",
+    fontSize: "10vw", // scales with screen
     fontWeight: "bold",
-    marginBottom: "1vw",
+    margin: "1vw 0",
     color: "#333",
   };
 
   const conditionStyle = {
     fontSize: "4vw",
+    color: "#777",
+    marginBottom: "2vw",
+  };
+
+  const locationStyle = {
+    fontSize: "3.5vw",
     color: "#777",
     marginBottom: "2vw",
   };
@@ -116,16 +107,11 @@ function App() {
     <div style={containerStyle}>
       <div style={cardStyle}>
         <div style={dateStyle}>{formattedDate}</div>
-        <div style={titleStyle}>Keeper</div>
-        <img
-          src="https://openweathermap.org/img/wn/10d@2x.png"
-          alt="Weather Icon"
-          style={iconStyle}
-        />
         {weather && (
           <>
             <div style={tempStyle}>{Math.round(weather.main.temp)}°</div>
             <div style={conditionStyle}>{weather.weather[0].main}</div>
+            <div style={locationStyle}>{weather.name}</div>
           </>
         )}
         <form onSubmit={handleSubmit}>
