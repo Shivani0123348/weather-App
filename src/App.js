@@ -49,7 +49,7 @@ function App() {
     borderRadius: "20px",
     padding: "2rem",
     width: "100%",
-    maxWidth: "360px",
+    maxWidth: "400px",
     textAlign: "center",
     boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
     fontFamily: "sans-serif",
@@ -72,6 +72,7 @@ function App() {
   const iconStyle = {
     width: "80px",
     height: "80px",
+    objectFit: "contain",
     marginBottom: "0.5rem",
   };
 
@@ -90,7 +91,7 @@ function App() {
 
   const inputStyle = {
     width: "100%",
-    padding: "0.6rem",
+    padding: "0.8rem",
     fontSize: "1rem",
     borderRadius: "8px",
     border: "1px solid #ccc",
@@ -100,7 +101,7 @@ function App() {
   };
 
   const buttonStyle = {
-    padding: "0.6rem",
+    padding: "0.8rem",
     fontSize: "1rem",
     backgroundColor: "#000",
     color: "white",
