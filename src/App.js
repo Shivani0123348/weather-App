@@ -34,7 +34,7 @@ function App() {
     fetchweather();
   };
 
-  // ✅ Responsive inline styles
+  // ✅ Responsive styles
   const containerStyle = {
     backgroundColor: "lightblue",
     width: "100vw",
@@ -47,8 +47,8 @@ function App() {
 
   const cardStyle = {
     backgroundColor: "white",
-    width: "90%",          // mobile default
-    maxWidth: "400px",     // prevents stretching on large screens
+    width: "90%",          // fills most of screen on mobile
+    maxWidth: "400px",     // caps size on larger screens
     minHeight: "60%",
     boxShadow: "0px 4px 8px rgba(0,0,0,0.3)",
     display: "flex",
@@ -99,7 +99,15 @@ function App() {
             />
             <h1 style={{ color: "black" }}>{weather.main.humidity}</h1>
             <p style={{ color: "black" }}>{weather.weather[0].main}</p>
-            <form onSubmit={handleSubmit} style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <input
                 type="text"
                 placeholder="Enter City"
