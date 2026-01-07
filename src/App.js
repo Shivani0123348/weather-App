@@ -29,64 +29,71 @@ function App() {
     fetchweather();
   };
 
-  // 🌤️ Stylized weather card layout
+  // 📱 Responsive styles using inline logic
   const containerStyle = {
     background: "linear-gradient(to bottom right, #4facfe, #00f2fe)",
     width: "100vw",
-    height: "100vh",
+    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "1rem",
+    padding: "5vw",
+    boxSizing: "border-box",
   };
 
   const cardStyle = {
     backgroundColor: "white",
     borderRadius: "20px",
-    padding: "2rem",
-    width: "90%",
-    maxWidth: "350px",
+    padding: "6vw",
+    width: "100%",
+    maxWidth: "400px",
     textAlign: "center",
     boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
     color: "#333",
     fontFamily: "sans-serif",
+    boxSizing: "border-box",
   };
 
   const tempStyle = {
-    fontSize: "4rem",
+    fontSize: "10vw", // scales with screen
     fontWeight: "bold",
-    margin: "0.5rem 0",
+    margin: "1vw 0",
     color: "#333",
   };
 
   const conditionStyle = {
-    fontSize: "1.2rem",
-    marginBottom: "0.5rem",
+    fontSize: "4vw",
+    marginBottom: "1vw",
     color: "#555",
   };
 
   const locationStyle = {
-    fontSize: "1rem",
+    fontSize: "3.5vw",
     color: "#777",
+    marginBottom: "2vw",
   };
 
   const inputStyle = {
     width: "100%",
-    padding: "0.5rem",
-    marginTop: "1rem",
+    padding: "3vw",
+    fontSize: "4vw",
     borderRadius: "8px",
     border: "1px solid #ccc",
     textAlign: "center",
+    boxSizing: "border-box",
   };
 
   const buttonStyle = {
-    marginTop: "0.5rem",
-    padding: "0.5rem 1rem",
+    marginTop: "2vw",
+    padding: "3vw",
+    fontSize: "4vw",
     backgroundColor: "#333",
     color: "white",
     border: "none",
     borderRadius: "8px",
     cursor: "pointer",
+    width: "100%",
+    boxSizing: "border-box",
   };
 
   return (
