@@ -6,19 +6,14 @@ function App() {
   const [weather, setweather] = useState(null);
 
   const currentDate = new Date();
-  const months = [
-    "January","February","March","April","May","June",
-    "July","August","September","October","November","December"
-  ];
-  const month = months[currentDate.getMonth()];
-  const Day = currentDate.getDate();
-  const year = currentDate.getFullYear();
-  const formattedDate = `${month} ${Day} ${year}`;
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+  const formattedTime = `${hours % 12 || 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`;
 
   const API_KEY = "44b67479646d0645fd52402e61dba5f5";
   const fetchweather = async () => {
     let response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
     );
     response = await response.json();
     setweather(response);
@@ -34,9 +29,9 @@ function App() {
     fetchweather();
   };
 
-  // ✅ Responsive styles
+  // 🌤️ Stylized weather card layout
   const containerStyle = {
-    backgroundColor: "lightblue",
+    background: "linear-gradient(to bottom right, #4facfe, #00f2fe)",
     width: "100vw",
     height: "100vh",
     display: "flex",
@@ -47,78 +42,75 @@ function App() {
 
   const cardStyle = {
     backgroundColor: "white",
-    width: "90%",          // fills most of screen on mobile
-    maxWidth: "400px",     // caps size on larger screens
-    minHeight: "60%",
-    boxShadow: "0px 4px 8px rgba(0,0,0,0.3)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-    alignItems: "center",
-    borderRadius: "8px",
-    padding: "1rem",
+    borderRadius: "20px",
+    padding: "2rem",
+    width: "90%",
+    maxWidth: "350px",
+    textAlign: "center",
+    boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
+    color: "#333",
+    fontFamily: "sans-serif",
   };
 
-  const imgStyle = {
-    height: "auto",
-    width: "40%",
-    maxWidth: "120px",
-    borderRadius: "50%",
+  const tempStyle = {
+    fontSize: "4rem",
+    fontWeight: "bold",
+    margin: "0.5rem 0",
+    color: "#333",
+  };
+
+  const conditionStyle = {
+    fontSize: "1.2rem",
+    marginBottom: "0.5rem",
+    color: "#555",
+  };
+
+  const locationStyle = {
+    fontSize: "1rem",
+    color: "#777",
   };
 
   const inputStyle = {
-    width: "90%",
-    textAlign: "center",
-    marginBottom: "0.5rem",
+    width: "100%",
     padding: "0.5rem",
+    marginTop: "1rem",
+    borderRadius: "8px",
     border: "1px solid #ccc",
-    borderRadius: "4px",
+    textAlign: "center",
   };
 
   const buttonStyle = {
-    backgroundColor: "black",
+    marginTop: "0.5rem",
+    padding: "0.5rem 1rem",
+    backgroundColor: "#333",
     color: "white",
-    width: "50%",
-    padding: "0.5rem",
-    borderRadius: "4px",
     border: "none",
+    borderRadius: "8px",
     cursor: "pointer",
   };
 
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
-        <p style={{ color: "black" }}>{formattedDate}</p>
         {weather && (
           <>
-            <h3 style={{ color: "black" }}>{weather.name}</h3>
-            <img
-              src="https://imgs.search.brave.com/CEVb94gVCaYTRzUURsMPoG_kipzy9q7BevWR7rsDk9Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzE1Lzc5LzUzLzQw/LzM2MF9GXzE1Nzk1/MzQwNjRfUkpKQ2ts/ODNqaTB1dFEwZEVZ/Tko0QnRuTEVwamhM/U0guanBn"
-              alt="Current Weather Condition"
-              style={imgStyle}
-            />
-            <h1 style={{ color: "black" }}>{weather.main.humidity}</h1>
-            <p style={{ color: "black" }}>{weather.weather[0].main}</p>
-            <form
-              onSubmit={handleSubmit}
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <input
-                type="text"
-                placeholder="Enter City"
-                style={inputStyle}
-                value={city}
-                onChange={(e) => setcity(e.target.value)}
-              />
-              <button type="submit" style={buttonStyle}>GET</button>
-            </form>
+            <div style={tempStyle}>{Math.round(weather.main.temp)}°</div>
+            <div style={conditionStyle}>{weather.weather[0].main}</div>
+            <div style={locationStyle}>
+              {weather.name} &nbsp; Current: {formattedTime}
+            </div>
           </>
         )}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Enter City"
+            style={inputStyle}
+            value={city}
+            onChange={(e) => setcity(e.target.value)}
+          />
+          <button type="submit" style={buttonStyle}>GET</button>
+        </form>
       </div>
     </div>
   );
