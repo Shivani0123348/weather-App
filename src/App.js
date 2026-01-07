@@ -31,7 +31,7 @@ function App() {
     fetchweather();
   };
 
-  // 📱 Responsive inline styles
+  // ✅ Responsive styles
   const containerStyle = {
     background: "linear-gradient(to bottom right, #4facfe, #00f2fe)",
     width: "100vw",
@@ -39,16 +39,16 @@ function App() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "5vw",
+    padding: "1rem",
     boxSizing: "border-box",
   };
 
   const cardStyle = {
     backgroundColor: "white",
     borderRadius: "20px",
-    padding: "6vw",
+    padding: "1.5rem",
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "350px",   // keeps card neat on desktop
     textAlign: "center",
     boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
     fontFamily: "sans-serif",
@@ -56,44 +56,44 @@ function App() {
   };
 
   const dateStyle = {
-    fontSize: "4vw",
+    fontSize: "1rem",
     color: "#555",
-    marginBottom: "2vw",
+    marginBottom: "1rem",
   };
 
   const tempStyle = {
-    fontSize: "10vw", // scales with screen
+    fontSize: "3rem",   // fixed relative size
     fontWeight: "bold",
-    margin: "1vw 0",
+    margin: "0.5rem 0",
     color: "#333",
   };
 
   const conditionStyle = {
-    fontSize: "4vw",
+    fontSize: "1.2rem",
     color: "#777",
-    marginBottom: "2vw",
+    marginBottom: "1rem",
   };
 
   const locationStyle = {
-    fontSize: "3.5vw",
+    fontSize: "1rem",
     color: "#777",
-    marginBottom: "2vw",
+    marginBottom: "1rem",
   };
 
   const inputStyle = {
     width: "100%",
-    padding: "3vw",
-    fontSize: "4vw",
+    padding: "0.6rem",
+    fontSize: "1rem",
     borderRadius: "8px",
     border: "1px solid #ccc",
     textAlign: "center",
+    marginBottom: "0.8rem",
     boxSizing: "border-box",
-    marginBottom: "2vw",
   };
 
   const buttonStyle = {
-    padding: "3vw",
-    fontSize: "4vw",
+    padding: "0.6rem",
+    fontSize: "1rem",
     backgroundColor: "#333",
     color: "white",
     border: "none",
