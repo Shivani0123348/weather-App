@@ -6,9 +6,13 @@ function App() {
   const [weather, setweather] = useState(null);
 
   const currentDate = new Date();
-  const hours = currentDate.getHours();
-  const minutes = currentDate.getMinutes().toString().padStart(2, '0');
-  const formattedTime = `${hours % 12 || 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`;
+  const months = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+  const month = months[currentDate.getMonth()];
+  const year = currentDate.getFullYear();
+  const formattedDate = `${month} / ${year}`;
 
   const API_KEY = "44b67479646d0645fd52402e61dba5f5";
   const fetchweather = async () => {
@@ -29,9 +33,9 @@ function App() {
     fetchweather();
   };
 
-  // 📱 Responsive styles using inline logic
+  // 📱 Responsive inline styles
   const containerStyle = {
-    background: "linear-gradient(to bottom right, #4facfe, #00f2fe)",
+    backgroundColor: "#add8e6",
     width: "100vw",
     minHeight: "100vh",
     display: "flex",
@@ -49,26 +53,38 @@ function App() {
     maxWidth: "400px",
     textAlign: "center",
     boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
-    color: "#333",
     fontFamily: "sans-serif",
     boxSizing: "border-box",
   };
 
-  const tempStyle = {
-    fontSize: "10vw", // scales with screen
+  const dateStyle = {
+    fontSize: "4vw",
+    color: "#555",
+    marginBottom: "2vw",
+  };
+
+  const titleStyle = {
+    fontSize: "5vw",
     fontWeight: "bold",
-    margin: "1vw 0",
+    marginBottom: "2vw",
+    color: "#333",
+  };
+
+  const iconStyle = {
+    width: "30%",
+    maxWidth: "100px",
+    marginBottom: "2vw",
+  };
+
+  const tempStyle = {
+    fontSize: "8vw",
+    fontWeight: "bold",
+    marginBottom: "1vw",
     color: "#333",
   };
 
   const conditionStyle = {
     fontSize: "4vw",
-    marginBottom: "1vw",
-    color: "#555",
-  };
-
-  const locationStyle = {
-    fontSize: "3.5vw",
     color: "#777",
     marginBottom: "2vw",
   };
@@ -81,10 +97,10 @@ function App() {
     border: "1px solid #ccc",
     textAlign: "center",
     boxSizing: "border-box",
+    marginBottom: "2vw",
   };
 
   const buttonStyle = {
-    marginTop: "2vw",
     padding: "3vw",
     fontSize: "4vw",
     backgroundColor: "#333",
@@ -99,13 +115,17 @@ function App() {
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
+        <div style={dateStyle}>{formattedDate}</div>
+        <div style={titleStyle}>Keeper</div>
+        <img
+          src="https://openweathermap.org/img/wn/10d@2x.png"
+          alt="Weather Icon"
+          style={iconStyle}
+        />
         {weather && (
           <>
             <div style={tempStyle}>{Math.round(weather.main.temp)}°</div>
             <div style={conditionStyle}>{weather.weather[0].main}</div>
-            <div style={locationStyle}>
-              {weather.name} &nbsp; Current: {formattedTime}
-            </div>
           </>
         )}
         <form onSubmit={handleSubmit}>
@@ -116,7 +136,7 @@ function App() {
             value={city}
             onChange={(e) => setcity(e.target.value)}
           />
-          <button type="submit" style={buttonStyle}>GET</button>
+          <button type="submit" style={buttonStyle}>SUBMIT</button>
         </form>
       </div>
     </div>
